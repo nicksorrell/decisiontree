@@ -1,4 +1,12 @@
 "use strict";
+
+/**********
+ * TREE
+ **********
+ * The Tree object contains all methods responsible for working with data
+ * from the "Tree Nodes" object that contains the entire decision tree.
+ **********/
+
 import TreeNodes from './tree-nodes';
 
 let Tree = {

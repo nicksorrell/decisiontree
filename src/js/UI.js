@@ -1,7 +1,26 @@
 "use strict";
+
+/**********
+ * UI
+ **********
+ * The UI object contains all methods responsible for modifying the HTML
+ * front-end of the app. The UI communicates with the 'Tree' object to
+ * get its data.
+ **********/
+
+/*****
+ * IMPORTS: Tree object and methods
+ *****/
 import Tree from './tree';
 
+// UI object and methods start here
 let UI = {
+  /*****
+   * init()
+   * ---
+   * Initializes the front-end by clearing in-memory data, loading any
+   * saved data, and displaying the default node.
+   *****/
   init() {
     Tree.navHistory = [];
 
