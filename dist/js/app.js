@@ -34,7 +34,7 @@ var UI = {
       backBtn.addEventListener('click', function () {
         UI.displayNode(_tree2.default.history.back());
       }, false);
-      document.getElementById('nav').appendChild(backBtn);
+      document.querySelector('#data nav').appendChild(backBtn);
     } else {
       if (backBtn.style.display = "none") {
         backBtn.style.display = "";
@@ -48,7 +48,7 @@ var UI = {
     }
   },
   addFinishBtn: function addFinishBtn(allowSave) {
-    var target = document.getElementById('node'),
+    var target = document.querySelector('#data .content'),
         finishBtn = document.getElementById('btn-finish');
 
     if (finishBtn === null) {
@@ -87,7 +87,12 @@ var UI = {
     }
   },
   loadSavedHistory: function loadSavedHistory() {
-    document.querySelector('#saved .content').innerHTML = "";
+    var target = document.querySelector('#saved .content'),
+        targetInstructions = document.querySelector('#saved .instructions'),
+        clearHistoryBtn = document.querySelector('#saved .btn-nav');
+
+    target.innerHTML = "";
+
     _tree2.default.history.load();
 
     for (var item in _tree2.default.savedHistory) {
@@ -95,16 +100,20 @@ var UI = {
     };
 
     if (_tree2.default.savedHistory.length > 0) {
-      if (document.querySelector('#saved .btn-nav') === null) {
-        var clearHistoryBtn = document.createElement('button');
+      if (clearHistoryBtn === null) {
+        clearHistoryBtn = document.createElement('button');
         clearHistoryBtn.classList.add("btn-nav");
         clearHistoryBtn.innerHTML = "Clear History";
         clearHistoryBtn.addEventListener('click', function () {
           _tree2.default.history.clear();
           UI.loadSavedHistory();
         });
-        document.querySelector('#saved').appendChild(clearHistoryBtn);
+        document.querySelector('#saved nav').appendChild(clearHistoryBtn);
+        targetInstructions.innerHTML = "Select an incident to review its history.";
       }
+    } else {
+      if (clearHistoryBtn !== null) clearHistoryBtn.remove();
+      targetInstructions.innerHTML = "There are no saved incidents.";
     }
   },
   addHistoryBtn: function addHistoryBtn(item) {
@@ -130,7 +139,7 @@ var UI = {
         UI.toggleReviewMode();
         UI.displayNode(_tree2.default.getNodeByID(_tree2.default.currentNodeID));
       }, false);
-      document.getElementById('nav').appendChild(exitReviewBtn);
+      document.querySelector('#data nav').appendChild(exitReviewBtn);
     }
   },
   toggleReviewMode: function toggleReviewMode() {
@@ -143,7 +152,7 @@ var UI = {
       _tree2.default.config.reviewMode = true;
       _tree2.default.reviewNavHistory = item.history;
 
-      document.getElementById('node').innerHTML = UI.createHistoryList();
+      document.querySelector('#data .content').innerHTML = UI.createHistoryList();
 
       var backBtn = document.getElementById('btn-back'),
           btnFinish = document.getElementById('btn-finish');
@@ -190,10 +199,10 @@ var UI = {
       }
     }
 
-    var target = document.getElementById('node');
+    var target = document.querySelector('#data .content');
     target.innerHTML = nodeMarkup;
 
-    var choiceButtons = document.querySelectorAll('#node button');
+    var choiceButtons = document.querySelectorAll('#data .content button');
 
     var _iteratorNormalCompletion2 = true;
     var _didIteratorError2 = false;

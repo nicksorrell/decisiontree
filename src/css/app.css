@@ -6,6 +6,7 @@ html {
 body {
     background: #f0f0f0;
     padding-top: 2em;
+    padding-bottom: 2em;
 }
 
 button {
@@ -95,7 +96,7 @@ button:disabled:hover {
   text-align: center;
   padding: 0.5em;
   margin: 0 0 1em 0;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #56585d;
   background: #b8d4ff;
   color: #303b48;
 
@@ -126,11 +127,6 @@ button:disabled:hover {
 .panel > .panel {
   margin: 2em;
   padding-bottom: 1em;
-}
-
-
-.panel > .content {
-  padding: 1em;
 }
 
 .title {
@@ -164,7 +160,7 @@ button:disabled:hover {
   font-weight: normal;
 }
 
-#node p {
+#data .content p {
   font-size: 2em;
   font-weight: bold;
   text-align: center;
@@ -172,10 +168,10 @@ button:disabled:hover {
 
 #main {
   width: 60%;
-  margin: 0 auto;
+  margin: auto;
 }
 
-#nav {
+nav {
   text-align: center;
   padding-bottom: 1em;
   margin-top: 1.5em;

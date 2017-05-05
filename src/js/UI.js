@@ -25,7 +25,7 @@ let UI = {
       backBtn.addEventListener('click', function(){
         UI.displayNode(Tree.history.back());
       }, false);
-      document.getElementById('nav').appendChild(backBtn);
+      document.querySelector('#data nav').appendChild(backBtn);
     } else {
       if(backBtn.style.display = "none") {
         backBtn.style.display = "";
@@ -40,7 +40,7 @@ let UI = {
   },
 
   addFinishBtn(allowSave) {
-    let target = document.getElementById('node'),
+    let target = document.querySelector('#data .content'),
         finishBtn = document.getElementById('btn-finish');
 
     if(finishBtn === null) {
@@ -66,7 +66,7 @@ let UI = {
       finishBtn.addEventListener('click', finishFunction, false);
 
       target.appendChild(finishBtn);
-      
+
     } else {
       if(finishBtn.style.display = "none") {
         finishBtn.style.display = "";
@@ -82,7 +82,12 @@ let UI = {
   },
 
   loadSavedHistory() {
-    document.querySelector('#saved .content').innerHTML = "";
+    let target = document.querySelector('#saved .content'),
+        targetInstructions = document.querySelector('#saved .instructions'),
+        clearHistoryBtn = document.querySelector('#saved .btn-nav');
+
+    target.innerHTML = "";
+
     Tree.history.load();
 
     for(let item in Tree.savedHistory) {
@@ -90,16 +95,20 @@ let UI = {
     };
 
     if(Tree.savedHistory.length > 0) {
-      if(document.querySelector('#saved .btn-nav') === null){
-        let clearHistoryBtn = document.createElement('button');
+      if(clearHistoryBtn === null){
+        clearHistoryBtn = document.createElement('button');
         clearHistoryBtn.classList.add("btn-nav");
         clearHistoryBtn.innerHTML = "Clear History";
         clearHistoryBtn.addEventListener('click', function() {
           Tree.history.clear();
           UI.loadSavedHistory();
         });
-        document.querySelector('#saved').appendChild(clearHistoryBtn);
+        document.querySelector('#saved nav').appendChild(clearHistoryBtn);
+        targetInstructions.innerHTML = "Select an incident to review its history.";
       }
+    } else {
+      if(clearHistoryBtn !== null) clearHistoryBtn.remove();
+      targetInstructions.innerHTML = "There are no saved incidents.";
     }
   },
 
@@ -127,7 +136,7 @@ let UI = {
         UI.toggleReviewMode();
         UI.displayNode(Tree.getNodeByID(Tree.currentNodeID));
       }, false);
-      document.getElementById('nav').appendChild(exitReviewBtn);
+      document.querySelector('#data nav').appendChild(exitReviewBtn);
     }
   },
 
@@ -139,7 +148,7 @@ let UI = {
       Tree.config.reviewMode = true;
       Tree.reviewNavHistory = item.history;
 
-      document.getElementById('node').innerHTML = UI.createHistoryList();
+        document.querySelector('#data .content').innerHTML = UI.createHistoryList();
 
       let backBtn = document.getElementById('btn-back'),
           btnFinish = document.getElementById('btn-finish');
@@ -167,10 +176,10 @@ let UI = {
       }
     }
 
-    let target = document.getElementById('node');
+    let target = document.querySelector('#data .content');
     target.innerHTML = nodeMarkup;
 
-    let choiceButtons = document.querySelectorAll('#node button');
+    let choiceButtons = document.querySelectorAll('#data .content button');
 
     for(let btn of choiceButtons) {
       btn.addEventListener('click', function() {
