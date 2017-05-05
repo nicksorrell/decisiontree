@@ -9,20 +9,22 @@
 <body>
   <div id="main">
     <div class="panel">
-      <h1 class="panel-title">Army Distributed Learning Metrics Incident Determination Tool</h1>
+      <h1 class="panel-title app">Army Distributed Learning Metrics Incident Determination Tool</h1>
       <p class="instructions">Select an option at each node to for forward navigation. Select the Back button to return one step. When an endpoint is reached, select the Log Incident and Restart button to save the endpoint and the steps leading to it for review.</p>
-      <section id="data">
-        <h2 class="status"></h2>
+      <section id="data" class="panel">
+        <h2 class="panel-title primary">Decision Tree Navigation</h2>
+        <h3 class="status"></h2>
         <div id="node">
+        </div>
+        <div id="nav">
         </div>
       </section>
 
-      <div id="nav">
-      </div>
+
       <div id="history" class="panel hidden">
       </div>
       <div id="saved" class="panel">
-        <h1 class="panel-title">Saved Incidents</h1>
+        <h2 class="panel-title">Saved Incidents</h2>
         <p class="instructions">Select an incident to review the choices that led to it.</p>
         <div class="content">
         </div>

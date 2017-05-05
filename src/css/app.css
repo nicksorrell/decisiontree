@@ -33,10 +33,6 @@ button:disabled:hover {
   cursor: default;
 }
 
-section {
-  padding: 1.5em;
-}
-
 table {
   width: 90%;
   margin: 0 auto;
@@ -105,9 +101,23 @@ table {
   padding: 0.5em;
   margin: 0 0 1em 0;
   border-bottom: 1px solid #000;
+  background: #b8d4ff;
+  color: #303b48;
+
+}
+
+.panel-title.app {
+  background: #426692;
+  color: #fff;
+  text-shadow: 1px 1px 0 #000;
+  font-size: 2em;
+}
+
+.panel-title.primary {
   background: #4c93ff;
-  color: white;
-  text-shadow: 0px 1px 0 #000;
+  font-size: 1.75em;
+  color: #fff;
+  text-shadow: 1px 1px 0 #333;
 }
 
 .panel {
@@ -123,13 +133,6 @@ table {
   padding-bottom: 1em;
 }
 
-.panel > .panel > .panel-title {
-  background: #b8d4ff;
-  color: #333;
-  font-size: 1.5em;
-  text-shadow: none;
-  margin: 0;
-}
 
 .panel > .content {
   padding: 1em;
@@ -158,7 +161,8 @@ table {
 }
 
 #data .status {
-  padding: 0.5em 0;
+  padding: 0.5em;
+  margin: 1em;
   border-top: 1px solid;
   border-bottom: 1px solid;
   border-color: #ccc;
@@ -179,6 +183,7 @@ table {
 #nav {
   text-align: center;
   padding-bottom: 1em;
+  margin-top: 1.5em;
 }
 
 table.history {

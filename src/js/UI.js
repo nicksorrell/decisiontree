@@ -8,7 +8,7 @@ let UI = {
     UI.loadSavedHistory();
 
     if(Tree.config.showSection == false) {
-      document.querySelector('.status').remove();
+      document.querySelector('#data .status').remove();
     }
 
     UI.displayNode(Tree.getNodeByID(Tree.config.startNodeID));
@@ -130,7 +130,10 @@ let UI = {
   },
 
   toggleReviewMode(item = null) {
+    let breadcrumb = document.querySelector('#data .status');
     if(item !== null) {
+      breadcrumb.innerHTML = `Reviewing ${item.endpoint} incident`;
+
       Tree.config.reviewMode = true;
       Tree.reviewNavHistory = item.history;
 

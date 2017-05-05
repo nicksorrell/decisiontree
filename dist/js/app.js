@@ -18,7 +18,7 @@ var UI = {
     UI.loadSavedHistory();
 
     if (_tree2.default.config.showSection == false) {
-      document.querySelector('.status').remove();
+      document.querySelector('#data .status').remove();
     }
 
     UI.displayNode(_tree2.default.getNodeByID(_tree2.default.config.startNodeID));
@@ -135,10 +135,12 @@ var UI = {
   toggleReviewMode: function toggleReviewMode() {
     var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
+    var breadcrumb = document.querySelector('#data .status');
     if (item !== null) {
+      breadcrumb.innerHTML = 'Reviewing ' + item.endpoint + ' incident';
+
       _tree2.default.config.reviewMode = true;
       _tree2.default.reviewNavHistory = item.history;
-      //Tree.navHistory = item.history;
 
       document.getElementById('node').innerHTML = UI.createHistoryList();
 
