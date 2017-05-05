@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf8">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <title>Decision Tree</title>
+  <link rel="stylesheet" href="src/css/app.css">
+</head>
+<body>
+  <div id="main">
+    <div class="panel">
+      <h1 class="panel-title">Army Distributed Learning Metrics Incident Determination Tool</h1>
+      <p class="instructions">Select an option at each node to for forward navigation. Select the Back button to return one step. When an endpoint is reached, select the Log Incident and Restart button to save the endpoint and the steps leading to it for review.</p>
+      <section id="data">
+        <h2 class="status"></h2>
+        <div id="node">
+        </div>
+      </section>
+
+      <div id="nav">
+      </div>
+      <div id="history" class="panel hidden">
+      </div>
+      <div id="saved" class="panel">
+        <h1 class="panel-title">Saved Incidents</h1>
+        <p class="instructions">Select an incident to review the choices that led to it.</p>
+        <div class="content">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="dist/js/app.js"></script>
+</body>
+</html>
