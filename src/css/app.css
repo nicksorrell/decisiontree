@@ -33,12 +33,6 @@ button:disabled:hover {
   cursor: default;
 }
 
-table {
-  width: 90%;
-  margin: 0 auto;
-  text-align: left;
-}
-
 .btn-choice {
   width: 70%;
   display: block;
@@ -61,6 +55,7 @@ table {
   font-weight: bold;
   margin-right: 1.5em;
   line-height: 150%;
+  padding: 0 1em;
 }
 
 .btn-history:last-child {
@@ -187,21 +182,30 @@ table {
 }
 
 table.history {
-  width: 100%;
+  width: auto;
+  margin: auto;
   text-align: left;
   border: 1px solid #ccc;
+  border-radius: 3px;
   border-spacing: 0;
   border-collapse: collapse;
 }
 
-table.history th {
-	font-weight: bold;
-}
-
 table.history th, table.history td {
 	text-align: left;
-	padding: 1em 0.5em;
+	padding: 1em;
 	border-bottom: 1px solid #ccc;
+}
+
+table.history th {
+	font-weight: bold;
+  font-size: 1.1rem;
+  background: #b8d4ff;
+  border-bottom: 1px solid #555;
+}
+
+table.history th:first-child, table.history td:first-child {
+  text-align: center;
 }
 
 table.history tbody tr:last-child td {

@@ -48,7 +48,8 @@ var UI = {
     }
   },
   addFinishBtn: function addFinishBtn(allowSave) {
-    var finishBtn = document.getElementById('btn-finish');
+    var target = document.getElementById('node'),
+        finishBtn = document.getElementById('btn-finish');
 
     if (finishBtn === null) {
       finishBtn = document.createElement('button');
@@ -72,7 +73,7 @@ var UI = {
 
       finishBtn.addEventListener('click', finishFunction, false);
 
-      document.getElementById('data').appendChild(finishBtn);
+      target.appendChild(finishBtn);
     } else {
       if (finishBtn.style.display = "none") {
         finishBtn.style.display = "";
