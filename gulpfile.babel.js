@@ -2,6 +2,8 @@
 
 import gulp from "gulp";
 import babel from "gulp-babel";
+import uglify from "gulp-uglify";
+import streamify from "gulp-streamify";
 import browserify from "browserify";
 import source from "vinyl-source-stream";
 
@@ -11,6 +13,7 @@ gulp.task("transpile", () => {
     .transform("babelify")
     .bundle()
     .pipe(source("app.js"))
+    .pipe(streamify(uglify()))
     .pipe(gulp.dest("dist/js"));
 });
 
