@@ -97,23 +97,19 @@ button:disabled:hover {
   padding: 0.5em;
   margin: 0 0 1em 0;
   border-bottom: 1px solid #56585d;
-  background: #b8d4ff;
-  color: #303b48;
-
+  background: #5d76a6;
+  color: #fff;;
+  text-shadow: 1px 1px 0 #333;
 }
 
 .panel-title.app {
   background: #2e5090;
-  color: #fff;
-  text-shadow: 1px 1px 0 #000;
   font-size: 2em;
 }
 
 .panel-title.primary {
-  background: #4c93ff;
+  background: #4578d8;
   font-size: 1.75em;
-  color: #fff;
-  text-shadow: 1px 1px 0 #333;
 }
 
 .panel {
