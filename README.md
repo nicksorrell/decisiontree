@@ -1,22 +1,66 @@
 # Incident Determination Decision Tree
 
-Simple decision tree app.
+A simple decision tree app that allows the user to navigate through a tree of decisions to arrive at an incident endpoint.
+This is an ES2015 app that uses Babel and Browserify (via Gulp) to build.
 
 ## Installation
-PH: NPM install
+NPM is required to install the app's development dependencies (Babel, Browserify, Gulp, etc.)
+`npm install`
 
 ## Build
-PH: Run Gulp
+Run the `default` Gulp task to build the app:
+`gulp`
+
+Run the `watch` Gulp task for automatic build:
+`gulp watch`
+
+Built files will be in _./dist_.
 
 ## Usage
-PH:
-
 To navigate the tree, open _index.html_ and select choices at each node.
 
-Config options in _src/js/tree.js_
+Once an endpoint is reached, the choices that led to that point can be saved via localStorage.
 
-* **startNodeID**: toggles temporary recording of paths to end-points
-* **debugMode**: toggles persistence of history using localStorage
+## Editing
+### App Data
+The app's code is organized MVC-style across 3 modules:
 
-## Editing Data
-PH: Edit the JSON structure in _src/js/tree-nodes.js_. Nodes link to other nodes until an end-point is reached.
+__ui.js__
+Contains all functionality for modifying the front-end HTML.
+__tree.js__
+Contains all functionality required for working with the tree node data. App config settings are found here.
+__tree-nodes.js__
+Contains the decision tree data that drives the app.
+
+### Node Data
+Decision tree data is in a JSON structure in _./src/js/tree-nodes.js_.
+
+Nodes link to other nodes using their IDs until an endpoint is reached. The two types of nodes are:
+__question__
+```
+nodes: {
+  "0.0": {
+      id: "0.0",
+      type: "question",
+      text: "This is the decision the user makes. What should they do?",
+      choices: [{
+          text: "Choice 1",
+          targetNode: "1.0"
+      }, {
+          text: "Choice 2",
+          targetNode: "C1A"
+      }]
+  }  
+}
+```
+
+__end__
+```
+nodes: {
+  "C1A": {
+      id: "C1A",
+      type: "end",
+      text: "Record C1A Answers Missing"
+  }  
+}
+```

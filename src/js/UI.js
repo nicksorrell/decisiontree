@@ -226,7 +226,7 @@ let UI = {
     if(item !== null) {
       breadcrumb.innerHTML = `Reviewing ${item.endpoint} incident`;
 
-      Tree.config.reviewMode = true;
+      Tree.reviewMode = true;
       Tree.reviewNavHistory = item.history;
 
         target.innerHTML = UI.createHistoryList();
@@ -239,7 +239,7 @@ let UI = {
 
       UI.addExitReviewBtn();
     } else {
-      Tree.config.reviewMode = false;
+      Tree.reviewMode = false;
     }
 
   },

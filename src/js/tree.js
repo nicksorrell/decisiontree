@@ -21,11 +21,15 @@ let Tree = {
    * and the prefix to apply to the history object name.
    ***************/
   config: {
+    // The default node to display
     startNodeID: "0.0",
+    // Toggles the breadcrumb display
     showSection: true,
+    // Toggles saving via localStorage
     allowSave: true,
+    // Toggles debug mode
     debugMode: false,
-    reviewMode: false,
+    // The prefix to apply to the localStorage history item
     prefix: "ATHD"
   },
 
@@ -36,6 +40,7 @@ let Tree = {
   sessionSavedHistory: [],
   currentSection: "",
   currentNodeID: null,
+  reviewMode: false,
 
   /***************
    * Util object
