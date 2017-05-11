@@ -29,7 +29,8 @@ let questionBank = {
  ***************/
 let TreeNodes = {
 
-  /* Sections MUST appear in descending order (e.g., 0.0 -> 1.0 -> 1.2) to
+  /* Sections that are important enough to show up as a breadcrumb go here.
+   * Sections MUST appear in descending order (e.g., 0.0 -> 1.0 -> 1.2) to
    * show up properly in the breadcrumb.
    */
   sections: {
