@@ -33,6 +33,7 @@ let Tree = {
   navHistory: [],
   reviewNavHistory: [],
   savedHistory: [],
+  sessionSavedHistory: [],
   currentSection: "",
   currentNodeID: null,
 
@@ -119,6 +120,8 @@ let Tree = {
         Tree.savedHistory.push({"endpoint": endpoint, "timestamp": Tree.util.getTimeStamp(), "history": history});
 
         window.localStorage.setItem(itemName, JSON.stringify(Tree.savedHistory));
+      } else {
+        Tree.sessionSavedHistory.push({"endpoint": endpoint, "timestamp": Tree.util.getTimeStamp(), "history": history});
       }
     },
 
@@ -131,6 +134,8 @@ let Tree = {
       if(Tree.util.localStorageActive) {
         let itemName = `${Tree.config.prefix}-history`;
         Tree.savedHistory = JSON.parse(localStorage.getItem(itemName)) || [];
+      } else {
+        Tree.savedHistory = Tree.sessionSavedHistory;
       }
     },
 
@@ -142,6 +147,8 @@ let Tree = {
     clear() {
       if(Tree.util.localStorageActive) {
         localStorage.clear();
+      } else {
+        Tree.sessionSavedHistory = [];
       }
     }
   },

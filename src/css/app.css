@@ -130,7 +130,7 @@ button:disabled:hover {
 }
 
 .status {
-  font-size: 1.1em;
+  font-size: 1.2em;
   color: #333;
 
 }
@@ -142,6 +142,7 @@ button:disabled:hover {
   border-radius: 3px;
   padding: 0.5em;
   margin: 1em;
+  line-height: 150%;
 }
 
 .hidden {

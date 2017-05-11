@@ -7,6 +7,14 @@
  *************************/
 import Tree from './tree';
 
+
+/*************************
+ * IE POLYFILLS
+ *************************/
+Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
+}
+
 /*************************
  * UI
  * ---
