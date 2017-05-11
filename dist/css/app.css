@@ -34,6 +34,15 @@ button:disabled:hover {
   cursor: default;
 }
 
+a.breadcrumb {
+  text-decoration: underline;
+  color: #333;
+}
+
+a.breadcrumb:hover {
+  color: #00f;
+}
+
 .btn-choice {
   width: 70%;
   display: block;

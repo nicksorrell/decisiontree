@@ -265,7 +265,7 @@ let UI = {
     if(node.choices !== undefined) {
       let noBtn = false;
       for(let choice of node.choices) {
-          noBtn = choice.text.includes("No (start over)");
+          noBtn = choice.text.includes("start over");
           nodeMarkup += `<button class="btn-choice ${noBtn ? 'btn-warn' : ''}" data-target="${choice.targetNode}">${choice.text}</button>`;
       }
     }
@@ -278,6 +278,11 @@ let UI = {
       btn.addEventListener('click', function() {
         let choice = this.innerHTML;
         Tree.history.add(node.id, choice)
+
+        if(choice.includes("start over")) {
+          Tree.navHistory = [];
+        }
+
          UI.displayNode(Tree.getNodeByID(this.dataset.target));
        }, false);
     }
@@ -311,8 +316,41 @@ let UI = {
    * node object paramater belongs in the tree data.
    ***************/
   updateSection(node) {
-    let target = document.querySelector('#data .status');
-    target.innerHTML = Tree.getSectionsByNodeID(node.id, false);
+    let target = document.querySelector('#data .status'),
+        sections = Tree.getSectionsByNodeID(node.id, false),
+        sectionCount = 0,
+        sectionStr = "";
+
+    for(let section in sections) {
+      if(section == sections.length - 1) {
+        sectionStr += (section == 0) ? `${sections[section].name}` : ` > ${sections[section].name}`;
+      } else if(section == 0) {
+        sectionStr = `<a class="breadcrumb" href="#" data-section="${sections[section].id}">${sections[section].name}</a>`;
+      } else {
+        sectionStr += ` > <a class="breadcrumb" href="#" data-section="${sections[section].id}">${sections[section].name}</a>`;
+      }
+
+      sectionCount++;
+    }
+
+    target.innerHTML = sectionStr;
+
+    let navLinks = document.querySelectorAll('a.breadcrumb');
+    let navLinkCallback = function() {
+      for(let i = 0; i < Tree.navHistory.length; i++) {
+        if(this.dataset.section == Tree.navHistory[i][0]) {
+          let targetNode = Tree.navHistory[i][0];
+          Tree.navHistory = Tree.navHistory.slice(0,i);
+          UI.displayNode(Tree.getNodeByID(targetNode));
+        }
+      }
+    };
+
+    if(navLinks.length > 0 ) {
+      for(let i = 0; i < navLinks.length; i++) {
+        navLinks[i].addEventListener('click', navLinkCallback, false);
+      }
+    }
   },
 
   /***************

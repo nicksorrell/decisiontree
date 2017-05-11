@@ -34,7 +34,7 @@ let TreeNodes = {
    * show up properly in the breadcrumb.
    */
   sections: {
-    "0.0": "Initial Section",
+    "0.0": "Start",
     "1.0": "Training System Technical Issues",
     "2.0": "Course Content Issues",
     "3.0": "Training System Transcript Issues",

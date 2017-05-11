@@ -38,7 +38,7 @@ let Tree = {
   reviewNavHistory: [],
   savedHistory: [],
   sessionSavedHistory: [],
-  currentSection: "",
+  currentLocation: [],
   currentNodeID: null,
   reviewMode: false,
 
@@ -174,30 +174,25 @@ let Tree = {
    * specified node ID string parameter.
    ***************/
   getSectionsByNodeID(nodeID, onlyCurrentSection = false) {
-    let sectionStr = "";
-    let sectionCount = 0;
+    let sections = [];
+    if(nodeID !== "0.0") sections.push({ id: "0.0", name: TreeNodes.sections["0.0"]});
 
     for(let section in TreeNodes.sections) {
       if(nodeID.startsWith( section.replace(".0","") )) {
 
         // Create a breadcrumb out the sections and subsections for the node
-        if(sectionCount == 0) {
-            sectionStr += TreeNodes.sections[section];
-        } else {
-          sectionStr += ` > ${TreeNodes.sections[section]}`;
-        }
+        sections.push({ id: section, name: TreeNodes.sections[section]});
 
         // If the onlyCurrentSection param is true, set just the current section
         if(onlyCurrentSection) {
-          sectionStr = TreeNodes.sections[section];
+          sections = [{ id: section, name: TreeNodes.sections[section]}];
         }
 
-        sectionCount++;
-        Tree.currentSection = sectionStr;
+        Tree.currentLocation = sections;
       }
     }
 
-    return Tree.currentSection;
+    return Tree.currentLocation;
   }
 
 }
