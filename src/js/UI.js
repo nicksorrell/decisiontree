@@ -7,12 +7,15 @@
  *************************/
 import Tree from './tree';
 
-
 /*************************
  * IE POLYFILLS
  *************************/
 Element.prototype.remove = function() {
+  try {
+    this.remove();
+  } catch (e) {
     this.parentElement.removeChild(this);
+  }
 }
 
 /*************************
@@ -35,7 +38,8 @@ let UI = {
     UI.loadSavedHistory();
 
     if(Tree.config.showSection == false) {
-      document.querySelector('#data .status').remove();
+      let status = document.querySelector('#data .status');
+      if(status !== null) status.remove();
     }
 
     UI.displayNode(Tree.getNodeByID(Tree.config.startNodeID));
@@ -124,7 +128,7 @@ let UI = {
   removeFinishBtn() {
     let finishBtn = document.getElementById('btn-finish');
     if(finishBtn !== null) {
-      document.getElementById('btn-finish').remove();
+      finishBtn.remove();
     }
   },
 
@@ -195,9 +199,11 @@ let UI = {
    * navigation mode from review mode to the DOM.
    ***************/
   addExitReviewBtn() {
-    if(document.getElementById('btn-exit-review') === null) {
-      let exitReviewBtn = document.createElement('button'),
-          target = document.querySelector('#data nav');
+    let exitReviewBtn = document.getElementById('btn-exit-review'),
+        target = document.querySelector('#data nav');
+
+    if(exitReviewBtn === null) {
+      exitReviewBtn = document.createElement('button');
 
       exitReviewBtn.id = "btn-exit-review";
       exitReviewBtn.classList.add("btn-nav");
@@ -224,7 +230,8 @@ let UI = {
         target = document.querySelector('#data .content');
 
     if(item !== null) {
-      breadcrumb.innerHTML = `Reviewing ${item.endpoint} incident`;
+      if(Tree.config.showSection)
+        breadcrumb.innerHTML = `Reviewing ${item.endpoint} incident`;
 
       Tree.reviewMode = true;
       Tree.reviewNavHistory = item.history;
@@ -336,6 +343,7 @@ let UI = {
     target.innerHTML = sectionStr;
 
     let navLinks = document.querySelectorAll('a.breadcrumb');
+
     let navLinkCallback = function() {
       for(let i = 0; i < Tree.navHistory.length; i++) {
         if(this.dataset.section == Tree.navHistory[i][0]) {
