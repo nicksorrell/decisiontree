@@ -121,7 +121,6 @@ let Tree = {
           Tree.savedHistory = JSON.parse(localStorage.getItem(itemName));
         }
 
-        let entryName = new Date().toISOString();
         Tree.savedHistory.push({"endpoint": endpoint, "timestamp": Tree.util.getTimeStamp(), "history": history});
 
         window.localStorage.setItem(itemName, JSON.stringify(Tree.savedHistory));
