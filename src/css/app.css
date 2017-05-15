@@ -214,6 +214,10 @@ footer .bottom {
   display: none;
 }
 
+.printed h1, .printed p {
+  text-align: center;
+}
+
 #data .status {
   padding: 0.5em;
   margin: 1em;

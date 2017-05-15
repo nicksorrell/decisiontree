@@ -225,8 +225,34 @@ let UI = {
    * Creates and adds a button that opens a new window and renders the history
    * in PDF format.
    ***************/
-  addPrintReviewBtn() {
-    // do things
+  addPrintReviewBtn(item) {
+    let printReviewBtn = document.getElementById('btn-print-review'),
+        target = document.querySelector('#data nav');
+
+    if(printReviewBtn === null) {
+      printReviewBtn = document.createElement('button');
+
+      printReviewBtn.id = "btn-print-review";
+      printReviewBtn.classList.add("btn-nav");
+      printReviewBtn.innerHTML = "Print View";
+
+      printReviewBtn.addEventListener('click', function(){
+        let printWin = window.open('', '_blank');
+        printWin.document.write(`<!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <title>Printing: ${item.endpoint} Incident</title>
+          <link rel="stylesheet" href="css/app.css">
+        </head>
+        <body class="printed">
+        <h1>${item.endpoint} Incident (${item.timestamp})</h1>
+        <p>The table below contains all the decisions that user made to arrive at the endpoint.</p>
+        ${UI.createHistoryList()}</body></html>`);
+      }, false);
+
+      target.appendChild(printReviewBtn);
+    }
   },
 
   /***************
@@ -246,7 +272,7 @@ let UI = {
       Tree.reviewMode = true;
       Tree.reviewNavHistory = item.history;
 
-        target.innerHTML = UI.createHistoryList();
+      target.innerHTML = UI.createHistoryList();
 
       let backBtn = document.getElementById('btn-back'),
           btnFinish = document.getElementById('btn-finish');
@@ -254,10 +280,11 @@ let UI = {
       if(backBtn !== null) backBtn.style.display = "none";
       if(btnFinish !== null) btnFinish.style.display = "none";
 
-      UI.addPrintReviewBtn();
+      UI.addPrintReviewBtn(item);
       UI.addExitReviewBtn();
     } else {
       Tree.reviewMode = false;
+      document.getElementById('btn-print-review').remove();
     }
 
   },
