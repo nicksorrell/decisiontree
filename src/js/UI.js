@@ -222,7 +222,7 @@ let UI = {
   /***************
    * addPrintReview()
    * ---
-   * Creates and adds a button that opens a new window and renders an incident
+   * Creates and adds a button that opens a new window and renders an item's
    * history for in a printable format.
    ***************/
   addPrintReviewBtn(item) {
@@ -243,11 +243,11 @@ let UI = {
               <html lang="en">
               <head>
                 <meta charset="UTF-8">
-                <title>${item.endpoint} Incident</title>
+                <title>${item.endpoint}</title>
                 <link rel="stylesheet" href="css/app.css">
               </head>
               <body class="printed">
-              <h1>${item.endpoint} Incident (${item.timestamp})</h1>
+              <h1>${item.endpoint} (${item.timestamp})</h1>
               <p>The table below contains all the decisions that user made to arrive at the ${item.endpoint} endpoint.</p>
               ${UI.createHistoryList()}
               </body></html>`;
@@ -271,7 +271,7 @@ let UI = {
 
     if(item !== null) {
       if(Tree.config.showSection)
-        breadcrumb.innerHTML = `Reviewing ${item.endpoint} incident`;
+        breadcrumb.innerHTML = `Reviewing history for ${item.endpoint} (${item.timestamp})`;
 
       Tree.reviewMode = true;
       Tree.reviewNavHistory = item.history;
