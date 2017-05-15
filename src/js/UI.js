@@ -234,7 +234,7 @@ let UI = {
 
       printReviewBtn.id = "btn-print-review";
       printReviewBtn.classList.add("btn-nav");
-      printReviewBtn.innerHTML = "Print View 🖨️";
+      printReviewBtn.innerHTML = "Print View";
 
       printReviewBtn.addEventListener('click', function(){
         let printWin = window.open('', '_blank'),
