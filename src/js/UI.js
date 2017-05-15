@@ -358,7 +358,10 @@ let UI = {
 
     // Show the live history table if debug mode is active.
     if(Tree.config.debugMode) {
-      let target = document.getElementById('history');
+      let debugPanel = document.getElementById('debug'),
+          target = document.querySelector('#debug .content');
+      debugPanel.classList.remove('hidden');
+      Tree.reviewNavHistory = Tree.navHistory;
       target.innerHTML = UI.createHistoryList(true, true);
     }
 

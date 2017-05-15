@@ -30,7 +30,7 @@ let Tree = {
     // Toggles saving via localStorage
     allowSave: true,
     // Toggles debug mode
-    debugMode: false,
+    debugMode: true,
     // Toggles the print view button
     showPrintView: true
   },

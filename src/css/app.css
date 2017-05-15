@@ -217,6 +217,10 @@ footer .bottom {
   text-align: center;
 }
 
+#debug .panel-title {
+  background: #c14da7;
+}
+
 #data .status {
   padding: 0.5em;
   margin: 1em;
@@ -272,6 +276,10 @@ table.history th:first-child, table.history td:first-child {
 
 table.history tbody tr:last-child td {
 	border-bottom: none;
+}
+
+table.history tbody tr:nth-child(odd) {
+	background: #fff;
 }
 
 table.history tbody tr:nth-child(even) {
