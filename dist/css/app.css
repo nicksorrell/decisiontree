@@ -43,6 +43,61 @@ a.breadcrumb:hover {
   color: #00f;
 }
 
+footer {
+  border-top: 1px solid #888;
+  text-align: center;
+  padding-top: 1.5em;
+}
+
+footer p {
+  margin: none;
+  margin-bottom: 1em;
+}
+
+footer div {
+  display: inline-block;
+  text-align: left;
+  vertical-align: top;
+  padding: 0 1em;
+}
+
+footer .left {
+  padding-right: 1.5em;
+  border-right: 1px solid #bbb;
+}
+
+footer .em {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+footer a {
+  text-decoration: none;
+  padding: 0.25em;
+}
+
+footer a:hover {
+  background: orange;
+  color: black;
+  text-decoration: underline;
+}
+
+footer .links a {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+footer .right {
+  padding-left: 1.5em;
+}
+
+footer .bottom {
+  border-top: 1px solid #bbb;
+  display: block;
+  text-align: center;
+  margin-top: 1em;
+}
+
 .btn-choice {
   width: 70%;
   display: block;

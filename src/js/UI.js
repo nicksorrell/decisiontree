@@ -220,6 +220,16 @@ let UI = {
   },
 
   /***************
+   * addPrintReview()
+   * ---
+   * Creates and adds a button that opens a new window and renders the history
+   * in PDF format.
+   ***************/
+  addPrintReviewBtn() {
+    // do things
+  },
+
+  /***************
    * toggleReviewMode( item )
    * ---
    * Toggles review mode based on whether an item object paramter is given.
@@ -244,6 +254,7 @@ let UI = {
       if(backBtn !== null) backBtn.style.display = "none";
       if(btnFinish !== null) btnFinish.style.display = "none";
 
+      UI.addPrintReviewBtn();
       UI.addExitReviewBtn();
     } else {
       Tree.reviewMode = false;
