@@ -222,8 +222,8 @@ let UI = {
   /***************
    * addPrintReview()
    * ---
-   * Creates and adds a button that opens a new window and renders the history
-   * in PDF format.
+   * Creates and adds a button that opens a new window and renders an incident
+   * history for in a printable format.
    ***************/
   addPrintReviewBtn(item) {
     let printReviewBtn = document.getElementById('btn-print-review'),
@@ -242,7 +242,7 @@ let UI = {
         <html lang="en">
         <head>
           <meta charset="UTF-8">
-          <title>Printing: ${item.endpoint} Incident</title>
+          <title>Print View: ${item.endpoint} Incident</title>
           <link rel="stylesheet" href="css/app.css">
         </head>
         <body class="printed">
@@ -284,7 +284,11 @@ let UI = {
       UI.addExitReviewBtn();
     } else {
       Tree.reviewMode = false;
-      document.getElementById('btn-print-review').remove();
+      let exitReviewBtn = document.getElementById('btn-exit-review'),
+          printReviewBtn = document.getElementById('btn-print-review');
+
+      if(exitReviewBtn !== null) exitReviewBtn.remove();
+      if(printReviewBtn !== null) printReviewBtn.remove();
     }
 
   },
