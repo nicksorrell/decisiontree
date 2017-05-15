@@ -21,7 +21,7 @@ button {
 button:hover {
   cursor: pointer;
   border-color: #555;
-  background: #efefef;
+  background: #cfdfff;
 }
 
 button:disabled {
@@ -177,7 +177,7 @@ footer .bottom {
 
 .panel {
   background: #f9f9f9;
-  border: 1px solid #888;
+  border: 1px solid #777;
   box-shadow: 0px 2px 5px #aaa;
   margin-bottom: 1.25em;
 }

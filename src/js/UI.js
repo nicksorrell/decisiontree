@@ -234,7 +234,7 @@ let UI = {
 
       printReviewBtn.id = "btn-print-review";
       printReviewBtn.classList.add("btn-nav");
-      printReviewBtn.innerHTML = "Print View";
+      printReviewBtn.innerHTML = "Open Printable View";
 
       printReviewBtn.addEventListener('click', function(){
         let printWin = window.open('', '_blank'),
@@ -243,7 +243,7 @@ let UI = {
               <html lang="en">
               <head>
                 <meta charset="UTF-8">
-                <title>Print View: ${item.endpoint} Incident</title>
+                <title>${item.endpoint} Incident</title>
                 <link rel="stylesheet" href="css/app.css">
               </head>
               <body class="printed">
@@ -286,7 +286,7 @@ let UI = {
 
       if(Tree.config.showPrintView)
         UI.addPrintReviewBtn(item);
-        
+
       UI.addExitReviewBtn();
     } else {
       Tree.reviewMode = false;
