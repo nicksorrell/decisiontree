@@ -234,21 +234,25 @@ let UI = {
 
       printReviewBtn.id = "btn-print-review";
       printReviewBtn.classList.add("btn-nav");
-      printReviewBtn.innerHTML = "Print View";
+      printReviewBtn.innerHTML = "Print View 🖨️";
 
       printReviewBtn.addEventListener('click', function(){
-        let printWin = window.open('', '_blank');
-        printWin.document.write(`<!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8">
-          <title>Print View: ${item.endpoint} Incident</title>
-          <link rel="stylesheet" href="css/app.css">
-        </head>
-        <body class="printed">
-        <h1>${item.endpoint} Incident (${item.timestamp})</h1>
-        <p>The table below contains all the decisions that user made to arrive at the endpoint.</p>
-        ${UI.createHistoryList()}</body></html>`);
+        let printWin = window.open('', '_blank'),
+            printWinStr =
+              `<!DOCTYPE html>
+              <html lang="en">
+              <head>
+                <meta charset="UTF-8">
+                <title>Print View: ${item.endpoint} Incident</title>
+                <link rel="stylesheet" href="css/app.css">
+              </head>
+              <body class="printed">
+              <h1>${item.endpoint} Incident (${item.timestamp})</h1>
+              <p>The table below contains all the decisions that user made to arrive at the ${item.endpoint} endpoint.</p>
+              ${UI.createHistoryList()}
+              </body></html>`;
+
+        printWin.document.write(printWinStr);
       }, false);
 
       target.appendChild(printReviewBtn);
