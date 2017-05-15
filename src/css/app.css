@@ -79,7 +79,6 @@ footer a {
 footer a:hover {
   background: orange;
   color: black;
-  text-decoration: underline;
 }
 
 footer .links a {
@@ -120,7 +119,7 @@ footer .bottom {
   font-weight: bold;
   margin-right: 1.5em;
   line-height: 150%;
-  padding: 0 1em;
+  padding: 1em;
 }
 
 .btn-history:last-child {
@@ -195,7 +194,7 @@ footer .bottom {
 }
 
 .status {
-  font-size: 1.2em;
+  font-size: 1.3em;
   color: #333;
 
 }
