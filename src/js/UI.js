@@ -94,7 +94,7 @@ let UI = {
       let finishFunction = null;
       finishBtn.id = "btn-finish";
       finishBtn.classList.add("btn-choice", "btn-primary");
-      finishBtn.innerHTML = allowSave ? "Log Incident and Restart" : "Start Over";
+      finishBtn.innerHTML = allowSave ? "Log Result and Restart" : "Start Over";
 
       if(allowSave) {
         finishFunction = function() {
@@ -165,11 +165,11 @@ let UI = {
         });
 
         target.appendChild(clearHistoryBtn);
-        targetInstructions.innerHTML = "Select an incident to review its history.";
+        targetInstructions.innerHTML = "Select an item to review its history.";
       }
     } else {
       if(clearHistoryBtn !== null) clearHistoryBtn.remove();
-      targetInstructions.innerHTML = "There are no saved incidents.";
+      targetInstructions.innerHTML = "There are no saved items.";
     }
   },
 
