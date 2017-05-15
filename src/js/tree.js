@@ -23,14 +23,16 @@ let Tree = {
   config: {
     // The default node to display
     startNodeID: "0.0",
+    // The prefix to apply to the localStorage history item
+    prefix: "ATHD",
     // Toggles the breadcrumb display
     showSection: true,
     // Toggles saving via localStorage
     allowSave: true,
     // Toggles debug mode
     debugMode: false,
-    // The prefix to apply to the localStorage history item
-    prefix: "ATHD"
+    // Toggles the print view button
+    showPrintView: true
   },
 
   // Vars used to temporarily store data during operation

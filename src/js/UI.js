@@ -284,7 +284,9 @@ let UI = {
       if(backBtn !== null) backBtn.style.display = "none";
       if(btnFinish !== null) btnFinish.style.display = "none";
 
-      UI.addPrintReviewBtn(item);
+      if(Tree.config.showPrintView)
+        UI.addPrintReviewBtn(item);
+        
       UI.addExitReviewBtn();
     } else {
       Tree.reviewMode = false;
