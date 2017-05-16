@@ -42,7 +42,35 @@ let UI = {
       if(status !== null) status.remove();
     }
 
+    if(Tree.config.debugMode == true) {
+      UI.addDebugBtn();
+    }
+
     UI.displayNode(Tree.getNodeByID(Tree.config.startNodeID));
+  },
+
+  /***************
+   * addDebugBtn()
+   * ---
+   * Creates and adds the Debug button to the DOM.
+   ***************/
+  addDebugBtn() {
+    let debugBtn = document.querySelector('#btn-debug'),
+        target = document.querySelector('footer div.right');
+
+    if(debugBtn === null) {
+      debugBtn = document.createElement('button');
+      debugBtn.id = "btn-debug";
+      debugBtn.classList.add("btn-nav");
+      debugBtn.innerHTML = "Debug Panel";
+
+      debugBtn.addEventListener('click', function(){
+        let debugPanel = document.getElementById('debug');
+        debugPanel.classList.toggle('hidden');
+      }, false);
+
+      target.appendChild(debugBtn);
+    }
   },
 
   /***************
@@ -237,7 +265,7 @@ let UI = {
       printReviewBtn.innerHTML = "Open Printable View";
 
       printReviewBtn.addEventListener('click', function(){
-        let printWin = window.open('', '_blank'),
+        let printWin = window.open('', '_blank', 'width=800, height=600'),
             printWinStr =
               `<!DOCTYPE html>
               <html lang="en">
@@ -253,6 +281,7 @@ let UI = {
               </body></html>`;
 
         printWin.document.write(printWinStr);
+        printWin.focus();
       }, false);
 
       target.appendChild(printReviewBtn);
@@ -358,9 +387,8 @@ let UI = {
 
     // Show the live history table if debug mode is active.
     if(Tree.config.debugMode) {
-      let debugPanel = document.getElementById('debug'),
-          target = document.querySelector('#debug .content');
-      debugPanel.classList.remove('hidden');
+      let target = document.querySelector('#debug .content');
+
       Tree.reviewNavHistory = Tree.navHistory;
       target.innerHTML = UI.createHistoryList(true, true);
     }

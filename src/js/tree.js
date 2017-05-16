@@ -32,7 +32,9 @@ let Tree = {
     // Toggles debug mode
     debugMode: true,
     // Toggles the print view button
-    showPrintView: true
+    showPrintView: true,
+    // Toggles user input/notes form
+    showInputForm: false
   },
 
   // Vars used to temporarily store data during operation
