@@ -213,8 +213,35 @@ footer .bottom {
   display: none;
 }
 
-.printed h1, .printed p {
+.printed h1, .printed h2, .printed p {
   text-align: center;
+}
+
+#user-input form {
+  width: 50%;
+  margin: auto;
+}
+
+#user-input label {
+  font-weight: bold;
+  font-size: 1.25em;
+}
+
+#user-input label, #user-input input, #user-input textarea {
+  display: block;
+  width: 100%;
+  font-family: sans-serif;
+}
+
+#user-input input, #user-input textarea {
+  margin-top: 0.25em;
+  padding: 0.5em;
+  border: 1px solid #888;
+  border-radius: 3px;
+}
+
+#user-input input {
+  margin-bottom: 1em;
 }
 
 #debug .panel-title {
@@ -234,6 +261,20 @@ footer .bottom {
   font-size: 2em;
   font-weight: bold;
   text-align: center;
+}
+
+#data .content p.notes {
+  font-size: 1em;
+  font-weight: normal;
+  padding: 0.5em;
+}
+
+p.notes .title {
+  font-weight: bold;
+  display: block;
+  text-decoration: underline;
+  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 #main {

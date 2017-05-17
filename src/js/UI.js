@@ -46,7 +46,72 @@ let UI = {
       UI.addDebugBtn();
     }
 
+    if(Tree.config.allowUserInput == true) {
+      UI.setupInputForm();
+    }
+
     UI.displayNode(Tree.getNodeByID(Tree.config.startNodeID));
+  },
+
+  /***************
+   * setupInputForm()
+   * ---
+   * Creates and adds, or resets user input form elements.
+   ***************/
+  setupInputForm() {
+    let targetPanel = document.querySelector('#user-input'),
+        target = document.querySelector('#user-input .content'),
+        titleTxt = document.querySelector('#form-info'),
+        inputForm = document.querySelector('#user-input form');
+
+    targetPanel.classList.remove('hidden');
+
+    if(inputForm === null) {
+      inputForm = document.createElement('form');
+
+      let titleInputLabel = document.createElement('label'),
+          notesInputLabel = document.createElement('label'),
+          titleInput = document.createElement('input'),
+          notesInput = document.createElement('textarea');
+
+      titleInputLabel.innerHTML = "Title";
+      titleInputLabel.appendChild(titleInput);
+      titleInput.name = "title";
+      titleInput.placeholder = "Optional title for decision result";
+
+      notesInputLabel.innerHTML = "Notes";
+      notesInputLabel.appendChild(notesInput);
+      notesInput.name = "notes";
+      notesInput.placeholder = "Optional notes";
+
+      inputForm.appendChild(titleInputLabel);
+      inputForm.appendChild(notesInputLabel);
+
+      target.appendChild(inputForm);
+    } else {
+      let titleInput = document.querySelector('#user-input form input[name="title"]'),
+          notesInput = document.querySelector('#user-input form textarea[name="notes"]');
+
+      titleInput.value = "";
+      notesInput.value = "";
+    }
+
+  },
+
+  /***************
+   * getFormInfo()
+   * ---
+   * Returns an object containing user input from the form.
+   ***************/
+  getFormInfo() {
+    let userInput = {},
+        title = document.querySelector('#user-input form input[name="title"]'),
+        notes = document.querySelector('#user-input form textarea[name="notes"]');
+
+    userInput["title"] = title.value;
+    userInput["notes"] = notes.value;
+
+    return userInput;
   },
 
   /***************
@@ -126,9 +191,20 @@ let UI = {
 
       if(allowSave) {
         finishFunction = function() {
-          let currentNodeID = Tree.getNodeByID(Tree.currentNodeID).id;
+          let currentNodeID = Tree.getNodeByID(Tree.currentNodeID).id,
+              formInfo = UI.getFormInfo(),
+              entryTitle = "";
+
           Tree.history.add(currentNodeID, "");
-          Tree.history.save(Tree.getNodeByID(Tree.currentNodeID).id, Tree.navHistory);
+
+          if(formInfo.title !== "") {
+            entryTitle = formInfo.title;
+          } else {
+            entryTitle = Tree.getNodeByID(Tree.currentNodeID).id;
+          }
+
+          Tree.history.save(entryTitle, Tree.navHistory, formInfo);
+
           UI.init();
         };
       } else {
@@ -214,6 +290,9 @@ let UI = {
     historyBtn.classList.add("btn-history");
     historyBtn.innerHTML = `<p><span class="title">${item.endpoint}</span><br>${item.timestamp}</p>`;
     historyBtn.addEventListener('click', function() {
+      if(Tree.reviewMode) {
+        UI.toggleReviewMode();
+      }
       UI.toggleReviewMode(item);
     }, false);
 
@@ -266,19 +345,26 @@ let UI = {
 
       printReviewBtn.addEventListener('click', function(){
         let printWin = window.open('', '_blank', 'width=800, height=600'),
-            printWinStr =
-              `<!DOCTYPE html>
-              <html lang="en">
-              <head>
-                <meta charset="UTF-8">
-                <title>${item.endpoint}</title>
-                <link rel="stylesheet" href="css/app.css">
-              </head>
-              <body class="printed">
-              <h1>${item.endpoint} (${item.timestamp})</h1>
-              <p>The table below contains all the decisions that user made to arrive at the ${item.endpoint} endpoint.</p>
-              ${UI.createHistoryList()}
-              </body></html>`;
+            printWinStr = '';
+
+        printWinStr =
+          `<!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <title>${item.endpoint}</title>
+            <link rel="stylesheet" href="css/app.css">
+          </head>
+          <body class="printed">
+          <h1>${item.endpoint} (${item.timestamp})</h1>
+          <p>The table below contains all the decisions that user made to arrive at the ${item.endpoint} endpoint.</p>
+          ${UI.createHistoryList()}`;
+
+        if(item.input.notes !== "") {
+          printWinStr += `<h2>Notes</h2><p>${item.input.notes}</p>`;
+        }
+
+        printWinStr += `</body></html>`;
 
         printWin.document.write(printWinStr);
         printWin.focus();
@@ -306,6 +392,13 @@ let UI = {
       Tree.reviewNavHistory = item.history;
 
       target.innerHTML = UI.createHistoryList();
+
+      if(item.input.notes !== "") {
+        let notes = document.createElement('p');
+        notes.classList.add('notes');
+        notes.innerHTML = `<span class='title'>Notes</span>${item.input.notes}`;
+        target.appendChild(notes);
+      }
 
       let backBtn = document.getElementById('btn-back'),
           btnFinish = document.getElementById('btn-finish');

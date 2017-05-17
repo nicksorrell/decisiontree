@@ -34,7 +34,7 @@ let Tree = {
     // Toggles the print view button
     showPrintView: true,
     // Toggles user input/notes form
-    showInputForm: false
+    allowUserInput: true
   },
 
   // Vars used to temporarily store data during operation
@@ -117,7 +117,7 @@ let Tree = {
      * Saves a history item containing the endpoint that the user Reached
      * and the choices that led to the endpoint for later display.
      ***************/
-    save(endpoint = "", history = []) {
+    save(endpoint = "", history = [], notes = {}) {
       if(Tree.util.localStorageActive) {
         let itemName = `${Tree.config.prefix}-history`;
 
@@ -125,11 +125,11 @@ let Tree = {
           Tree.savedHistory = JSON.parse(localStorage.getItem(itemName));
         }
 
-        Tree.savedHistory.push({"endpoint": endpoint, "timestamp": Tree.util.getTimeStamp(), "history": history});
+        Tree.savedHistory.push({"endpoint": endpoint, "timestamp": Tree.util.getTimeStamp(), "input": notes, "history": history});
 
         window.localStorage.setItem(itemName, JSON.stringify(Tree.savedHistory));
       } else {
-        Tree.sessionSavedHistory.push({"endpoint": endpoint, "timestamp": Tree.util.getTimeStamp(), "history": history});
+        Tree.sessionSavedHistory.push({"endpoint": endpoint, "timestamp": Tree.util.getTimeStamp(), "input": notes, "history": history});
       }
     },
 
