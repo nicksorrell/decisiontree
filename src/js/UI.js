@@ -192,12 +192,14 @@ let UI = {
       if(allowSave) {
         finishFunction = function() {
           let currentNodeID = Tree.getNodeByID(Tree.currentNodeID).id,
-              formInfo = UI.getFormInfo(),
+              formInfo = {},
               entryTitle = "";
+
+          if(Tree.config.allowUserInput) formInfo = UI.getFormInfo();
 
           Tree.history.add(currentNodeID, "");
 
-          if(formInfo.title !== "") {
+          if(Tree.config.allowUserInput && formInfo.title !== "") {
             entryTitle = formInfo.title;
           } else {
             entryTitle = Tree.getNodeByID(Tree.currentNodeID).id;

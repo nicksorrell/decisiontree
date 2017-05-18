@@ -34,7 +34,7 @@ let Tree = {
     // Toggles the print view button
     showPrintView: true,
     // Toggles user input/notes form
-    allowUserInput: true
+    allowUserInput: false
   },
 
   // Vars used to temporarily store data during operation
